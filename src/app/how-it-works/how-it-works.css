@@ -1,0 +1,839 @@
+/* How It Works Page Styles */
+.how-it-works-page {
+  width: 100%;
+  color: var(--white);
+  position: relative;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+/* Scroll Reveal Animation Base Class */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.scroll-reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered Reveal Animation */
+.staggered-item {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.staggered-item.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0% { opacity: 0.7; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.1); }
+  100% { opacity: 0.7; transform: scale(1); }
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -100% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes ripple {
+  0% { 
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% { 
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+@keyframes glowPulse {
+  0% { box-shadow: 0 0 10px rgba(0, 102, 204, 0.5); }
+  50% { box-shadow: 0 0 20px rgba(0, 102, 204, 0.8), 0 0 30px rgba(0, 102, 204, 0.4); }
+  100% { box-shadow: 0 0 10px rgba(0, 102, 204, 0.5); }
+}
+
+@keyframes borderGlow {
+  0% { border-color: rgba(255, 255, 255, 0.1); }
+  50% { border-color: rgba(0, 102, 204, 0.5); }
+  100% { border-color: rgba(255, 255, 255, 0.1); }
+}
+
+@keyframes tiltEffect {
+  0% { transform: perspective(1000px) rotateX(0deg) rotateY(0deg); }
+  25% { transform: perspective(1000px) rotateX(2deg) rotateY(-2deg); }
+  50% { transform: perspective(1000px) rotateX(0deg) rotateY(0deg); }
+  75% { transform: perspective(1000px) rotateX(-2deg) rotateY(2deg); }
+  100% { transform: perspective(1000px) rotateX(0deg) rotateY(0deg); }
+}
+
+/* Touch and Hover Effects */
+.touch-effect {
+  position: relative;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.touch-effect:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.7);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%);
+  transform-origin: 50% 50%;
+}
+
+.touch-effect:active:after {
+  animation: ripple 0.4s ease-out;
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 20px var(--primary-light);
+  transform: translateY(-3px) scale(1.02);
+  animation: glowPulse 2s infinite;
+}
+
+/* 3D Card Effect */
+.card-3d {
+  transform: perspective(1000px);
+  transform-style: preserve-3d;
+  transition: all 0.3s ease;
+}
+
+.card-3d:hover {
+  transform: perspective(1000px) rotateX(5deg) rotateY(5deg);
+}
+
+/* Hero Section */
+.how-hero {
+  position: relative;
+  padding: 8rem 2rem 6rem;
+  text-align: center;
+  background: transparent;
+  overflow: hidden;
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.how-title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(45deg, var(--white), var(--primary-light));
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  animation: shimmer 3s infinite linear alternate;
+}
+
+.how-subtitle {
+  font-size: 1.4rem;
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.animated-circles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.circle {
+  position: absolute;
+  opacity: 0.1;
+  border-radius: 50%;
+  background: linear-gradient(45deg, var(--primary-light), var(--secondary));
+  filter: blur(5px);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.circle1 {
+  width: 400px;
+  height: 400px;
+  top: -100px;
+  right: -150px;
+  animation: float 15s infinite ease-in-out alternate;
+}
+
+.circle2 {
+  width: 300px;
+  height: 300px;
+  bottom: -50px;
+  left: -100px;
+  animation: float 12s infinite ease-in-out alternate-reverse;
+}
+
+.circle3 {
+  width: 200px;
+  height: 200px;
+  top: 40%;
+  left: 15%;
+  animation: float 20s infinite ease-in-out;
+}
+
+.how-it-works-page:hover .circle {
+  opacity: 0.15;
+  filter: blur(3px);
+}
+
+.animate-fade-in-up {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* Workflow Visualization */
+.workflow-visualization {
+  max-width: 800px;
+  margin: 2rem auto 0;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease 0.4s;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.workflow-visualization:hover {
+  transform: translateZ(10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px var(--primary-light);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  animation: tiltEffect 6s infinite ease-in-out;
+}
+
+.workflow-graphic {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.workflow-icon-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.workflow-icon {
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  transform-style: preserve-3d;
+}
+
+.workflow-icon:not(.arrow):hover {
+  transform: translateY(-10px) scale(1.1) translateZ(20px);
+  background: rgba(0, 102, 204, 0.2);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 0 15px var(--primary-light);
+  border: 1px solid rgba(0, 102, 204, 0.5);
+  animation: borderGlow 2s infinite;
+}
+
+.arrow {
+  background: none;
+  border: none;
+  box-shadow: none;
+  color: var(--primary-light);
+  font-size: 1.5rem;
+  width: auto;
+  animation: pulse 2s infinite;
+}
+
+.workflow-labels {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.workflow-label {
+  width: 60px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-align: center;
+  color: var(--primary-light);
+  transition: all 0.3s ease;
+}
+
+.workflow-icon:hover + .workflow-label {
+  transform: translateY(5px);
+  color: white;
+  font-weight: 600;
+  text-shadow: 0 0 10px var(--primary-light);
+}
+
+/* Process Section */
+.process-section {
+  padding: 6rem 2rem;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(5px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.process-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.process-header h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(45deg, var(--white), var(--primary-light));
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s infinite linear alternate;
+}
+
+.process-header p {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.interactive-process {
+  max-width: 1200px;
+  margin: 0 auto;
+  perspective: 1000px;
+}
+
+.process-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+  border-radius: 50px;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 0.5rem;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease;
+}
+
+.process-navigation:hover {
+  transform: rotateX(5deg);
+}
+
+.process-nav-item {
+  flex: 1;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: transparent;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.process-nav-item:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transform: translateX(-100%);
+}
+
+.process-nav-item:hover:before {
+  transform: translateX(100%);
+  transition: transform 0.8s ease;
+}
+
+.process-nav-item.active {
+  background: rgba(0, 102, 204, 0.3);
+  box-shadow: 0 0 15px rgba(0, 102, 204, 0.3);
+}
+
+.process-nav-item:hover:not(.active) {
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateY(-2px);
+}
+
+.step-number {
+  width: 30px;
+  height: 30px;
+  background: var(--primary);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.process-nav-item:hover .step-number {
+  transform: scale(1.1) rotate(10deg);
+}
+
+.process-nav-item.active .step-number {
+  background: linear-gradient(45deg, var(--primary), var(--secondary));
+  box-shadow: 0 0 10px var(--primary);
+}
+
+.step-label {
+  font-weight: 500;
+  white-space: nowrap;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.process-nav-item:hover .step-label {
+  transform: translateX(5px);
+}
+
+.process-content {
+  position: relative;
+  min-height: 400px;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.process-step {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px) rotateX(10deg);
+  transition: all 0.5s ease;
+  transform-origin: center top;
+  transform-style: preserve-3d;
+}
+
+.process-step.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) rotateX(0);
+}
+
+.step-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  animation: float 3s infinite ease-in-out;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  transform-style: preserve-3d;
+}
+
+.step-icon:hover {
+  animation: bounce 1s infinite ease-in-out;
+  text-shadow: 0 0 15px var(--primary-light);
+  transform: scale(1.2) translateZ(30px);
+}
+
+.step-details {
+  flex: 1;
+  min-width: 300px;
+}
+
+.step-details h3 {
+  color: var(--primary-light);
+  transition: all 0.3s ease;
+}
+
+.step-features li {
+  transition: all 0.3s ease;
+  transform: translateX(0);
+}
+
+.step-features li:hover {
+  transform: translateX(10px);
+  color: var(--primary-light);
+}
+
+/* Journey Timeline Animations */
+.journey-timeline {
+  position: relative;
+  padding: 2rem 0;
+}
+
+.timeline-track {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 4px;
+  height: 0;
+  background: linear-gradient(to bottom, var(--primary), var(--secondary));
+  transform: translateX(-50%);
+  transition: height 1.5s ease;
+}
+
+.journey-timeline.active .timeline-track {
+  height: 100%;
+}
+
+.journey-event {
+  margin-bottom: 4rem;
+  position: relative;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.5s ease;
+}
+
+.journey-event.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.event-dot {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  background: var(--primary);
+  border-radius: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  box-shadow: 0 0 0 5px rgba(0, 102, 204, 0.2);
+  transition: all 0.3s ease;
+}
+
+.journey-event:hover .event-dot {
+  transform: translateX(-50%) scale(1.2);
+  background: var(--secondary);
+  box-shadow: 0 0 0 8px rgba(0, 102, 204, 0.2), 0 0 20px var(--primary);
+}
+
+.event-content {
+  transform-style: preserve-3d;
+  transition: all 0.4s ease;
+  border-radius: 12px;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.event-content:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateZ(20px) scale(1.03);
+}
+
+.event-icon {
+  font-size: 2rem;
+  transition: all 0.3s ease;
+}
+
+.event-content:hover .event-icon {
+  transform: scale(1.2) rotate(10deg);
+  animation: bounce 1s infinite;
+}
+
+/* Video features */
+.video-feature {
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border-radius: 12px;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  margin-bottom: 1rem;
+}
+
+.video-feature:hover {
+  transform: translateX(10px);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.feature-icon {
+  transition: all 0.3s ease;
+  font-size: 1.75rem;
+}
+
+.video-feature:hover .feature-icon {
+  animation: bounce 1s infinite;
+}
+
+.video-wrapper {
+  transform-style: preserve-3d;
+  transition: all 0.5s ease;
+  overflow: hidden;
+  border-radius: 15px;
+  position: relative;
+}
+
+.video-wrapper:hover {
+  transform: translateZ(30px) scale(1.05);
+}
+
+.play-button {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: all 0.3s ease;
+}
+
+.play-icon {
+  transition: all 0.3s ease;
+}
+
+.video-wrapper:hover .play-icon {
+  transform: scale(1.2) translateZ(20px);
+  animation: pulse 1.5s infinite;
+}
+
+/* Add touch-friendly card effects */
+.faq-item, .testimonial-slide, .start-step {
+  position: relative;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: all 0.3s ease;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  border-radius: 12px;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 1rem;
+}
+
+.faq-item:hover, .testimonial-slide:hover, .start-step:hover {
+  transform: translateY(-5px) rotateX(5deg);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.faq-item:active, .testimonial-slide:active, .start-step:active {
+  transform: translateY(0) rotateX(0);
+}
+
+.faq-item h3 {
+  color: var(--primary-light);
+  transition: all 0.3s ease;
+}
+
+.faq-item:hover h3 {
+  transform: translateX(5px);
+}
+
+/* Testimonial animations */
+.testimonial-quote {
+  position: relative;
+}
+
+.testimonial-quote:before {
+  content: '"';
+  position: absolute;
+  top: -20px;
+  left: -10px;
+  font-size: 5rem;
+  opacity: 0.2;
+  color: var(--primary-light);
+  transition: all 0.3s ease;
+}
+
+.testimonial-slide:hover .testimonial-quote:before {
+  opacity: 0.4;
+  transform: translateY(-5px) scale(1.1);
+}
+
+/* CTA Buttons */
+.btn {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border-radius: 50px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transform-style: preserve-3d;
+}
+
+.btn:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transform: translateX(-100%);
+}
+
+.btn:hover:before {
+  transform: translateX(100%);
+  transition: transform 0.8s ease;
+}
+
+.btn:hover {
+  transform: translateY(-3px) translateZ(10px);
+  box-shadow: 0 7px 14px rgba(0, 0, 0, 0.2), 0 0 10px var(--primary-light);
+}
+
+.btn:active {
+  transform: translateY(1px) translateZ(0);
+}
+
+.btn-primary {
+  background: linear-gradient(45deg, var(--primary), var(--secondary));
+  border: none;
+  color: white;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--primary-light);
+  color: var(--primary-light);
+}
+
+/* Get Started Steps */
+.start-step {
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.start-step:hover {
+  transform: scale(1.05) translateZ(20px);
+}
+
+.step-circle {
+  width: 40px;
+  height: 40px;
+  background: var(--primary);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.start-step:hover .step-circle {
+  transform: rotate(10deg) scale(1.1);
+  box-shadow: 0 0 15px var(--primary);
+  background: linear-gradient(45deg, var(--primary), var(--secondary));
+}
+
+.start-arrow {
+  animation: pulse 2s infinite;
+  font-size: 2rem;
+  color: var(--primary-light);
+}
+
+/* Enhanced scroll reveal for mobile touch interactions */
+@media (max-width: 768px) {
+  .touch-effect:active {
+    transform: scale(0.97);
+  }
+  
+  .process-nav-item {
+    padding: 0.75rem 0.5rem;
+  }
+  
+  .workflow-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+  }
+  
+  .workflow-label {
+    font-size: 0.7rem;
+  }
+  
+  .workflow-visualization {
+    padding: 1rem;
+  }
+  
+  .how-title {
+    font-size: 2.8rem;
+  }
+  
+  .process-navigation {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .process-nav-item {
+    flex: 0 0 45%;
+  }
+}
+
+/* Ripple Effect */
+.ripple {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple 0.6s linear;
+  pointer-events: none;
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+} 
